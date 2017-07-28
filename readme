@@ -1,0 +1,8 @@
+Requirements: python3.6, pip, redis 
+Windows:
+    winfiles\entrypoint.cmd
+    winfiles\startserver.cmd
+Linux:
+    ./entrypoint.sh
+    ./startserver.sh
+If you want to use app with db, ensure that redis service is running.

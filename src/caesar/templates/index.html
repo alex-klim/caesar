@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="caesar" ng-init="text='Czxyk ZK (jip, evvu dfiv cvkkvij kf xlvjj zk izxyk)';
+ tekst=''; offset=0; announcement_info='Try your luck. Press Guess button.'; textUpdate()" ng-controller="ctrl1">
+    <head>
+        <title>SPA for caesar cipher encryption/decryption</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		{% load static %}
+		
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/angular-chart.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/chart.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    </head>
+    <body>
+        <div class="container-fluid">
+        <!--  header  -->
+        <div class="container text-center">
+            <h1>Caesar cipher (en|de)cryptor.</h1>
+        </div>
+            
+        <div class="container text-center">
+         <div class="row">
+
+            <!-- left element-->
+            <div class="container col-md-4 vcenter">
+                <div class="form-group">
+                    <label for="comment">Input form:</label>
+                    <textarea class="form-control noresize" rows="12" id="comment" ng-model="text"
+                                                             ng-change="textUpdate()"></textarea>
+                </div>
+            </div>
+                                <div class="clearfix visible-xs-block visible-md-block"></div>
+          <!-- center element-->
+            <div class="container col-md-3 vcenter">
+           
+                <div>
+                    <input type="number" class="form-control" placeholder="ROT" ng-model="offset">
+                </div>
+
+                <div class="btn-group row-fluid ">
+                    <button type="button" class="btn btn-primary btn-responsive btn-sm" ng-click="decrypt()">Decrypt</button>
+                    <button type="button" class="btn btn-info btn-responsive btn-sm" ng-click="breakCaesar()">Guess</button>
+                    <button type="button" class="btn btn-primary btn-responsive btn-sm" ng-click="encrypt()">Encrypt</button>
+                </div>
+  
+            </div>
+                                <div class="clearfix visible-xs-block visible-md-block"></div>
+            <!-- right element-->
+            <div class="container vcenter col-md-4">
+                <div class="form-group">
+                    <label for="comment">Result form:</label>
+                    <textarea class="form-control noresize" rows="12" id="comment2" readonly ng-model="tekst"></textarea>
+                </div>
+            </div>
+            
+
+         </div>
+        </div>
+
+        <!--      chart element       -->
+        <div class="container" ng-controller="BarCtrl">
+            <canvas id="bar" {% verbatim %} height="{{height_chart}}"{% endverbatim %}
+             class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+            </canvas>
+        </div>
+       
+        <div class="container text-center alert alert-info">
+            <h1 ng-bind="announcement"></h1>
+            <h5 ng-bind="announcement_info"></h5>
+        </div>
+        </div>
+
+       <script src="{% static 'js/app.js' %}"></script>
+    </body>
+</html>
